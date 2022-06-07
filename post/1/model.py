@@ -12,7 +12,6 @@ class TritonPythonModel(PostKeypointDetectionModel):
         pred_keypoints = inputs[0]
         scores = inputs[1][0]
         scales = inputs[3]  # inputs[2] is bounding box of person, not use yet
-
         kps = []
         scs = []
         for i, s in enumerate(scores):
@@ -21,4 +20,4 @@ class TritonPythonModel(PostKeypointDetectionModel):
             kps.append(pred_keypoints[i])
             scs.append(s)
         kps = [p / scales[0] for p in kps]
-        return [np.ndarray(kps), np.ndarray(scs)]
+        return [np.array(kps), np.array(scs)]
